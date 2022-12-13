@@ -1,4 +1,42 @@
+/* * {
+  outline: 1px solid #f00 !important; // Turn on to see layout and overflowing containers better
+} */
+
 body {
-    background-color: yellow;
-    color: black;
+    background-image: linear-gradient(#8A37DD, #000);
+    color: rgb(200 200 200);
+    display: flex;
+    justify-content: center;
+}
+
+.input-new-todo{
+    display: flex;
+    
+    .add-todo-input{
+        width: 80%;
+    }
+
+    .add-todo-btn{
+        width: 20%;
+    }
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.todo-wrapper{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 90vw;
+}
+
+.todo-task{
+    background-color: #2d2d2d;
+    margin: 10px;
+    padding: 10px;
 }
