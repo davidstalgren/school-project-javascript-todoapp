@@ -55,10 +55,38 @@ ul {
     background-color: #2d2d2d;
     margin: 10px;
     padding: 10px;
+    border-radius: 8px;
+    border: 1px solid gray;
+    box-shadow: 2px 2px 5px rgb(117 117 117);
+
+    &.justintime{
+        border: 1px solid rgb(255 136 0);
+        box-shadow: 2px 2px 5px rgb(255 136 0);
+    }
+
+    &.overdue{
+        border: 1px solid red;
+        box-shadow: 2px 2px 5px red;
+    }
+
+    &.completed{
+        text-decoration: line-through;
+        background-color: #606060;
+    }
+
 
     .icons-duedate{
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+    }
+
+    .checkbox,
+    .trashcan{
+        font-size: 1.5rem;
+
+        &.completed{
+            color: rgb(154 255 154);
+        }
     }
 }

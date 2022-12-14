@@ -26,44 +26,47 @@
           <label for="addTodoInput">New TODO:</label><input type="text" class="add-todo-input" id="addTodoInput" placeholder="Add new TODO..."><br>
           <label for="addTodoInputDate">Due date:</label><input type="date" class="add-todo-input-date" id="addTodoInputDate" placeholder="Add new TODO...">
           <button type="submit" class="add-todo-btn" id="add-todo-btn">Add</button>
+          <!-- TODO: Add 3 categories to choose from -->
         </form>
       </div>
     </section>
     <section>
       <div class="todo-wrapper">
         <ul>
-          <li class="todo-task">Do laundry
+          <!-- TODO: Add icon based on category -->
+          <li class="todo-task overdue">Do laundry
             <div class="icons-duedate">
               <div>
-                <i class="fa-regular fa-square-check"></i>
-                <i class="fa-solid fa-trash-can"></i>
+                <!-- TODO: Add buttons for a11y -->
+                <i class="fa-regular fa-square-check checkbox"></i>
+                <i class="fa-solid fa-trash-can trashcan"></i>
               </div>
-              <span>Due Date</span>
+              <span>Over Due Date</span>
             </div>
           </li>
-          <li class="todo-task">Get groceries
+          <li class="todo-task justintime">Get groceries
             <div class="icons-duedate">
               <div>
-                <i class="fa-regular fa-square-check"></i>
-                <i class="fa-solid fa-trash-can"></i>
+                <i class="fa-regular fa-square-check checkbox"></i>
+                <i class="fa-solid fa-trash-can trashcan"></i>
               </div>
-              <span>Due Date</span>
+              <span>Soon Due Date</span>
             </div>
           </li>
           <li class="todo-task">Dress as Santa
             <div class="icons-duedate">
               <div>
-                <i class="fa-regular fa-square-check"></i>
-                <i class="fa-solid fa-trash-can"></i>
+                <i class="fa-regular fa-square-check checkbox"></i>
+                <i class="fa-solid fa-trash-can trashcan"></i>
               </div>
               <span>Due Date</span>
             </div>
           </li>
-          <li class="todo-task">Put up decorations
+          <li class="todo-task completed">Put up decorations
             <div class="icons-duedate">
               <div>
-                <i class="fa-regular fa-square-check"></i>
-                <i class="fa-solid fa-trash-can"></i>
+                <i class="fa-regular fa-square-check checkbox completed"></i>
+                <i class="fa-solid fa-trash-can trashcan"></i>
               </div>
               <span>Due Date</span>
             </div>
