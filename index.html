@@ -11,23 +11,63 @@
 
 <body>
   <main>
+
     <header class="header">
       <h1 class="header-todo">TODO</h1>
-      <span class="header-date" id="headerDate"></span>
-      <span class="header-week" id="headerWeek"></span>
+      <div class="todays-date">
+        <span class="header-date" id="headerDate"></span>
+        <span class="header-week" id="headerWeek"></span>
+      </div>
     </header>
+
     <section>
       <div class="input-new-todo">
-        <input type="text" class="add-todo-input" id="add-todo-input" placeholder="Add new TODO..."><button class="add-todo-btn" id="add-todo-btn">Add</button>
+        <form>
+          <label for="addTodoInput">New TODO:</label><input type="text" class="add-todo-input" id="addTodoInput" placeholder="Add new TODO..."><br>
+          <label for="addTodoInputDate">Due date:</label><input type="date" class="add-todo-input-date" id="addTodoInputDate" placeholder="Add new TODO...">
+          <button type="submit" class="add-todo-btn" id="add-todo-btn">Add</button>
+        </form>
       </div>
     </section>
     <section>
       <div class="todo-wrapper">
         <ul>
-          <li class="todo-task">Do laundry</li>
-          <li class="todo-task">Get groceries</li>
-          <li class="todo-task">Dress as Santa</li>
-          <li class="todo-task">Put up decorations</li>
+          <li class="todo-task">Do laundry
+            <div class="icons-duedate">
+              <div>
+                <i class="fa-regular fa-square-check"></i>
+                <i class="fa-solid fa-trash-can"></i>
+              </div>
+              <span>Due Date</span>
+            </div>
+          </li>
+          <li class="todo-task">Get groceries
+            <div class="icons-duedate">
+              <div>
+                <i class="fa-regular fa-square-check"></i>
+                <i class="fa-solid fa-trash-can"></i>
+              </div>
+              <span>Due Date</span>
+            </div>
+          </li>
+          <li class="todo-task">Dress as Santa
+            <div class="icons-duedate">
+              <div>
+                <i class="fa-regular fa-square-check"></i>
+                <i class="fa-solid fa-trash-can"></i>
+              </div>
+              <span>Due Date</span>
+            </div>
+          </li>
+          <li class="todo-task">Put up decorations
+            <div class="icons-duedate">
+              <div>
+                <i class="fa-regular fa-square-check"></i>
+                <i class="fa-solid fa-trash-can"></i>
+              </div>
+              <span>Due Date</span>
+            </div>
+          </li>
         </ul>
       </div>
     </section>
