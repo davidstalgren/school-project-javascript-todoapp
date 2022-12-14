@@ -29,3 +29,4 @@ headerDate.innerHTML = today;
 headerWeek.innerHTML = 'Week ' + week;
 
 console.log(week)
+
