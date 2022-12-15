@@ -81,6 +81,15 @@ ul {
         align-items: flex-end;
     }
 
+    .check-btn,
+    .trash-btn{
+        height: 35px;
+        width: 35px;
+        border: none;
+        color: rgb(200 200 200);
+        background-color: transparent;
+    }
+
     .checkbox,
     .trashcan{
         font-size: 1.5rem;

@@ -23,50 +23,50 @@
     <section>
       <div class="input-new-todo">
         <form>
-          <label for="addTodoInput">New TODO:</label><input type="text" class="add-todo-input" id="addTodoInput" placeholder="Add new TODO..."><br>
-          <label for="addTodoInputDate">Due date:</label><input type="date" class="add-todo-input-date" id="addTodoInputDate" placeholder="Add new TODO...">
-          <button type="submit" class="add-todo-btn" id="add-todo-btn">Add</button>
-          <!-- TODO: Add 3 categories to choose from -->
+          <label for="addTodoInput">New TODO:<input type="text" class="add-todo-input" id="addTodoInput" placeholder="Add new TODO..."></label><br>
+          <label for="addTodoInputDate">Due date:<input type="date" class="add-todo-input-date" id="addTodoInputDate" placeholder="Add new TODO..."></label>
+          <input type="submit" class="add-todo-btn" id="add-todo-btn" value="Add"><br>
+          <label><input type="radio" name="category" id="category1" value="School"><span><i class="fa-solid fa-school"></i> School</span></label>
+          <label><input type="radio" name="category" id="category2" value="Personal"><span><i class="fa-solid fa-person-hiking"></i> Personal</span></label>
+          <label><input type="radio" name="category" id="category3" value="Home"><span><i class="fa-solid fa-house-user"></i> Home</span></label>
         </form>
       </div>
     </section>
     <section>
       <div class="todo-wrapper">
         <ul>
-          <!-- TODO: Add icon based on category -->
-          <li class="todo-task overdue">Do laundry
+          <li class="todo-task overdue">
+            <i class="fa-solid fa-house-user"></i>Do laundry
             <div class="icons-duedate">
               <div>
-                <!-- TODO: Add buttons for a11y -->
-                <i class="fa-regular fa-square-check checkbox"></i>
-                <i class="fa-solid fa-trash-can trashcan"></i>
+                <button class="check-btn"><i class="fa-regular fa-square-check checkbox"></i></button><button class="trash-btn"><i class="fa-solid fa-trash-can trashcan"></i></button>
               </div>
               <span>Over Due Date</span>
             </div>
           </li>
-          <li class="todo-task justintime">Get groceries
+          <li class="todo-task justintime">
+            <i class="fa-solid fa-house-user"></i>Get groceries
             <div class="icons-duedate">
               <div>
-                <i class="fa-regular fa-square-check checkbox"></i>
-                <i class="fa-solid fa-trash-can trashcan"></i>
+                <button class="check-btn"><i class="fa-regular fa-square-check checkbox"></i></button><button class="trash-btn"><i class="fa-solid fa-trash-can trashcan"></i></button>
               </div>
               <span>Soon Due Date</span>
             </div>
           </li>
-          <li class="todo-task">Dress as Santa
+          <li class="todo-task">
+            <i class="fa-solid fa-person-hiking"></i>Dress as Santa
             <div class="icons-duedate">
               <div>
-                <i class="fa-regular fa-square-check checkbox"></i>
-                <i class="fa-solid fa-trash-can trashcan"></i>
+                <button class="check-btn"><i class="fa-regular fa-square-check checkbox"></i></button><button class="trash-btn"><i class="fa-solid fa-trash-can trashcan"></i></button>
               </div>
               <span>Due Date</span>
             </div>
           </li>
-          <li class="todo-task completed">Put up decorations
+          <li class="todo-task completed">
+            <i class="fa-solid fa-house-user"></i>Put up decorations
             <div class="icons-duedate">
               <div>
-                <i class="fa-regular fa-square-check checkbox completed"></i>
-                <i class="fa-solid fa-trash-can trashcan"></i>
+                <button class="check-btn"><i class="fa-regular fa-square-check checkbox completed"></i></button><button class="trash-btn"><i class="fa-solid fa-trash-can trashcan"></i></button>
               </div>
               <span>Due Date</span>
             </div>
