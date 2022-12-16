@@ -47,7 +47,7 @@ ul {
     width: 90vw;
 }
 
-.todo-task{
+.item{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -81,8 +81,7 @@ ul {
         align-items: flex-end;
     }
 
-    .check-btn,
-    .trash-btn{
+    .delete-button{
         height: 35px;
         width: 35px;
         border: none;

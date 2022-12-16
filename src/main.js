@@ -1,22 +1,17 @@
 import './style/style.scss';
 
-/* // All kod härifrån och ner är bara ett exempel för att komma igång
-
-// I denna utils-fil har vi lagrat funktioner som ofta används, t.ex. en "blanda array"-funktion
-import { shuffle } from './utils';
-
-// I denna fil har vi lagrat vår "data", i detta exempel en ofullständig kortlek
-import exampleCardDeck from './exampleArray';
- */
+//*****************************************************************************************
+//------------------------- Print out todays date and week --------------------------------
+//*****************************************************************************************
 
 const headerDate = document.querySelector('#headerDate');
 const headerWeek = document.querySelector('#headerWeek');
-let now = new Date()
-let day = now.getDate();
-let month = now.getMonth() + 1;
-let year = now.getFullYear();
-let week = getWeek(now)
-let today = day + '/' + month + ' - ' + year;
+const now = new Date()
+const day = now.getDate();
+const month = now.getMonth() + 1;
+const year = now.getFullYear();
+const week = getWeek(now)
+const today = day + '/' + month + ' - ' + year;
 
 function getWeek(date) {
     let startDate = new Date(date.getFullYear(), 0, 1);
@@ -28,5 +23,131 @@ function getWeek(date) {
 headerDate.innerHTML = today;
 headerWeek.innerHTML = 'Week ' + week;
 
-console.log(week)
+//*****************************************************************************************
+//--------------------------------------- Add Todo Item -----------------------------------
+//*****************************************************************************************
 
+//selectors for form and inputs
+const todoForm = document.querySelector('.todo-form');
+const todoInput = document.querySelector('.todo-input');
+const todoInputDueDate = document.querySelector('.todo-input-date');
+
+
+const todoItemsList = document.querySelector('.todo-items');
+
+let todos = [];
+
+// eventlistener on form, prevents reload and call addTodo with value from input box
+todoForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  addTodo(todoInput.value, todoInputDueDate.value);
+});
+
+// add todo function that checks if item and dueDate is not empty create object todo. Pushes it to todos array
+function addTodo(item, dueDate) {
+  if (item !== '', dueDate !== '') {
+    const todo = {
+      id: Date.now(),
+      name: item,
+      completed: false,
+      dueDate: dueDate,
+    };
+    todos.push(todo);
+    toLocalStorage(todos);
+  } else {
+    alert('Make sure to type a Todo and also choose a due date and category!');
+  }
+}
+
+//*****************************************************************************************
+//---------------------------------- Render out Todo items --------------------------------
+//*****************************************************************************************
+
+// function to render out the todos
+function renderTodos(todos) {
+  todoItemsList.innerHTML = '';
+  todos.forEach(function(item) {
+    const checked = item.completed ? 'checked' : null;  //ternary operator, fancy if else statement to check if todo is completed
+    const li = document.createElement('li');
+    li.setAttribute('class', 'item');
+    li.setAttribute('data-key', item.id);
+
+    if(item.completed === true) {   // if todo is completed add class checked, css will handle the rest
+      li.classList.add('checked');
+    }
+      li.innerHTML = `
+        <i class="fa-solid fa-house-user"></i>${item.name}
+        <div class="icons-duedate">
+          <div>
+            <input class="checkbox" type="checkbox" ${checked}>
+            <button class="delete-button"><i class="fa-solid fa-trash-can trashcan"></i></button>
+          </div>
+          <span>Over Due Date</span>
+        </div>
+      `;
+      todoItemsList.append(li); // append the li element to the ul
+    });
+}
+
+//*****************************************************************************************
+//------------------------ Push and get items from local storage --------------------------
+//*****************************************************************************************
+
+// function stringify and adds todos array to localstorage
+function toLocalStorage(todos) {
+  localStorage.setItem('todos', JSON.stringify(todos)); // stringify the array with key 'todos' and sends it to storage
+  renderTodos(todos);
+}
+
+// function to get array from local storage
+function getLocalStorage() {
+  const todoList = localStorage.getItem('todos'); // store the local storage items in todoList variable
+  if (todoList) {   
+    todos = JSON.parse(todoList); // make it an array again and store it in the todos array.
+    renderTodos(todos);
+  }
+}
+
+
+
+//*****************************************************************************************
+//------------------------------ Checkbox and Remove-button -------------------------------
+//*****************************************************************************************
+
+
+
+
+function checked(id) {
+  todos.forEach(function(item) {
+    if (item.id == id) {
+      item.completed = !item.completed;
+    }
+  });
+toLocalStorage(todos);
+}
+
+function removeTodo(id) {
+  todos = todos.filter(function(item) {
+    return item.id != id;
+  });
+  toLocalStorage(todos);
+}
+
+getLocalStorage();
+
+todoItemsList.addEventListener('click', function(e) {
+
+  // check if target clicked is a checkbox, run function checked to mark correct todo as complete
+  if (e.currentTarget.type === 'checkbox') { 
+    const checkCheckbox = e.currentTarget.closest('data-key');
+    const getCheckboxId = checkCheckbox.getAttribute('data-key');
+    checked(getCheckboxId);
+  }
+
+  // check if target clicked is a delete button, run function removeTodo to remove correct todo
+  if (e.currentTarget.classList.contains('delete-button')) {     
+    const checkDeleteBtn = e.currentTarget.closest('data-key');
+    const getRemoveId = checkDeleteBtn.getAttribute('data-key');
+    removeTodo(getRemoveId);
+  }
+});

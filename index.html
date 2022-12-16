@@ -22,10 +22,10 @@
 
     <section>
       <div class="input-new-todo">
-        <form>
-          <label for="addTodoInput">New TODO:<input type="text" class="add-todo-input" id="addTodoInput" placeholder="Add new TODO..."></label><br>
-          <label for="addTodoInputDate">Due date:<input type="date" class="add-todo-input-date" id="addTodoInputDate" placeholder="Add new TODO..."></label>
-          <input type="submit" class="add-todo-btn" id="add-todo-btn" value="Add"><br>
+        <form class="todo-form">
+          <label for="todoInput">New TODO:<input type="text" class="todo-input" id="todoInput" placeholder="Add new TODO..."></label><br>
+          <label for="todoInputDate">Due date:<input type="date" class="todo-input-date" id="todoInputDate" placeholder="Add new TODO..."></label>
+          <input type="submit" class="add-button" id="add-button" value="Add"><br>
           <label><input type="radio" name="category" id="category1" value="School"><span><i class="fa-solid fa-school"></i> School</span></label>
           <label><input type="radio" name="category" id="category2" value="Personal"><span><i class="fa-solid fa-person-hiking"></i> Personal</span></label>
           <label><input type="radio" name="category" id="category3" value="Home"><span><i class="fa-solid fa-house-user"></i> Home</span></label>
@@ -34,17 +34,18 @@
     </section>
     <section>
       <div class="todo-wrapper">
-        <ul>
-          <li class="todo-task overdue">
+        <ul class="todo-items">
+<!--           <li class="item overdue" data-key="1594003133171">
             <i class="fa-solid fa-house-user"></i>Do laundry
             <div class="icons-duedate">
               <div>
-                <button class="check-btn"><i class="fa-regular fa-square-check checkbox"></i></button><button class="trash-btn"><i class="fa-solid fa-trash-can trashcan"></i></button>
+                <input class="checkbox" type="checkbox">
+                <button class="delete-button"><i class="fa-solid fa-trash-can trashcan"></i></button>
               </div>
               <span>Over Due Date</span>
             </div>
           </li>
-          <li class="todo-task justintime">
+          <li class="item justintime">
             <i class="fa-solid fa-house-user"></i>Get groceries
             <div class="icons-duedate">
               <div>
@@ -53,7 +54,7 @@
               <span>Soon Due Date</span>
             </div>
           </li>
-          <li class="todo-task">
+          <li class="item">
             <i class="fa-solid fa-person-hiking"></i>Dress as Santa
             <div class="icons-duedate">
               <div>
@@ -62,7 +63,7 @@
               <span>Due Date</span>
             </div>
           </li>
-          <li class="todo-task completed">
+          <li class="item completed">
             <i class="fa-solid fa-house-user"></i>Put up decorations
             <div class="icons-duedate">
               <div>
@@ -70,7 +71,7 @@
               </div>
               <span>Due Date</span>
             </div>
-          </li>
+          </li> -->
         </ul>
       </div>
     </section>
