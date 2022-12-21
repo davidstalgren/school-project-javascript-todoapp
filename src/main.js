@@ -6,7 +6,7 @@ import './style/style.scss';
 
 const headerDate = document.querySelector('#headerDate');
 const headerWeek = document.querySelector('#headerWeek');
-const now = new Date()
+const now = new Date();
 const day = now.getDate();
 const month = now.getMonth() + 1;
 const year = now.getFullYear();
@@ -34,10 +34,11 @@ const todoInputDueDate = document.querySelector('.todo-input-date');
 
 
 const todoItemsList = document.querySelector('.todo-items');
+const todoItemsLi = document.querySelector('#item');
 
 let todos = [];
 
-// eventlistener on form, prevents reload and call addTodo with value from input box
+/* // eventlistener on form, prevents reload and call addTodo with value from input box TODO: Gör om från anonym funktion!
 todoForm.addEventListener('submit', function(e) {
   e.preventDefault();
   addTodo(todoInput.value, todoInputDueDate.value);
@@ -45,7 +46,7 @@ todoForm.addEventListener('submit', function(e) {
 
 // add todo function that checks if item and dueDate is not empty create object todo. Pushes it to todos array
 function addTodo(item, dueDate) {
-  if (item !== '', dueDate !== '') {
+  if (item !== '' && dueDate !== '') {
     const todo = {
       id: Date.now(),
       name: item,
@@ -57,7 +58,29 @@ function addTodo(item, dueDate) {
   } else {
     alert('Make sure to type a Todo and also choose a due date and category!');
   }
-}
+} */
+
+
+// eventlistener on form, call event and addTodo with value from inputbox and dueDate as parameters
+todoForm.addEventListener('submit', (e) => addTodo(e, todoInput.value, todoInputDueDate.value));
+
+
+// add todo function that checks if item and dueDate is not empty create object todo. Pushes it to todos array. Else throw an alert in users face.
+function addTodo(e, item, dueDate) {
+  e.preventDefault();
+    if (item !== '' && dueDate !== '') {
+      const todo = {
+        id: Date.now(),
+        name: item,
+        completed: false,
+        dueDate: dueDate,
+      };
+      todos.push(todo);
+      toLocalStorage(todos);
+    } else {
+      alert('Make sure to type a Todo and also choose a due date and category!');
+    }
+};
 
 //*****************************************************************************************
 //---------------------------------- Render out Todo items --------------------------------
@@ -77,16 +100,16 @@ function renderTodos(todos) {
     }
       li.innerHTML = `
         <i class="fa-solid fa-house-user"></i>${item.name}
-        <div class="icons-duedate">
-          <div>
-            <input class="checkbox" type="checkbox" ${checked}>
-            <button class="delete-button"><i class="fa-solid fa-trash-can trashcan"></i></button>
+          <div class="icons-duedate">
+            <div>
+              <input class="checkbox" type="checkbox" ${checked}>
+              <button class="delete-button"><i class="fa-solid fa-trash-can trashcan"></i></button>
+            </div>
+            <span>Over Due Date</span>
           </div>
-          <span>Over Due Date</span>
-        </div>
       `;
-      todoItemsList.append(li); // append the li element to the ul
-    });
+    todoItemsList.append(li); // append the li element to the ul
+  });
 }
 
 //*****************************************************************************************
@@ -108,22 +131,64 @@ function getLocalStorage() {
   }
 }
 
-
-
 //*****************************************************************************************
 //------------------------------ Checkbox and Remove-button -------------------------------
 //*****************************************************************************************
 
-
-
-
-function checked(id) {
+/* function checked(id) {
   todos.forEach(function(item) {
     if (item.id == id) {
       item.completed = !item.completed;
     }
   });
-toLocalStorage(todos);
+  toLocalStorage(todos);
+}
+ */
+function removeTodo(id) {
+  todos = todos.filter(function(item) {
+    return item.id != id;
+  });
+  toLocalStorage(todos);
+}
+
+
+/*   // check if target clicked is a checkbox, run function checked  with the correct ID to mark correct todo as complete TODO: gör om från anonym funktion
+  if (e.currentTarget.type === 'checkbox') { 
+    const checkCheckbox = e.currentTarget.closest('data-key');
+    const getCheckboxId = checkCheckbox.getAttribute('data-key');
+    checked(getCheckboxId);
+  }
+ */
+
+  // check if target clicked is a delete button, run function removeTodo to remove correct todo
+
+console.log(todoItemsList)
+todoItemsList.addEventListener('click', removeGetId);
+
+function removeGetId(e) {
+
+console.log(e.currentTarget)
+  if (e.currentTarget.classList.contains('delete-button')) {     
+    const checkDeleteBtn = e.currentTarget.closest('data-key');
+    const getRemoveId = checkDeleteBtn.getAttribute('data-key');
+    removeTodo(getRemoveId);
+  }
+}
+
+getLocalStorage();
+
+
+
+
+
+
+/* function checked(id) {
+  todos.forEach(function(item) {
+    if (item.id == id) {
+      item.completed = !item.completed;
+    }
+  });
+  toLocalStorage(todos);
 }
 
 function removeTodo(id) {
@@ -133,11 +198,9 @@ function removeTodo(id) {
   toLocalStorage(todos);
 }
 
-getLocalStorage();
-
 todoItemsList.addEventListener('click', function(e) {
 
-  // check if target clicked is a checkbox, run function checked to mark correct todo as complete
+  // check if target clicked is a checkbox, run function checked  with the correct ID to mark correct todo as complete TODO: gör om från anonym funktion
   if (e.currentTarget.type === 'checkbox') { 
     const checkCheckbox = e.currentTarget.closest('data-key');
     const getCheckboxId = checkCheckbox.getAttribute('data-key');
@@ -151,3 +214,6 @@ todoItemsList.addEventListener('click', function(e) {
     removeTodo(getRemoveId);
   }
 });
+
+getLocalStorage(); */
+
