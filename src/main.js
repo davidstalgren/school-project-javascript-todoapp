@@ -62,18 +62,18 @@ function addTodo(item, dueDate) {
 
 
 // eventlistener on form, call event and addTodo with value from inputbox and dueDate as parameters
-todoForm.addEventListener('submit', (e) => addTodo(e, todoInput.value, todoInputDueDate.value));
+todoForm.addEventListener('submit', addTodo);
 
 
 // add todo function that checks if item and dueDate is not empty create object todo. Pushes it to todos array. Else throw an alert in users face.
-function addTodo(e, item, dueDate) {
+function addTodo(e) {
   e.preventDefault();
-    if (item !== '' && dueDate !== '') {
+    if (todoInputDueDate.value !== '' && todoInput.value !== '') {
       const todo = {
         id: Date.now(),
-        name: item,
+        name: todoInput.value,
         completed: false,
-        dueDate: dueDate,
+        dueDate: todoInputDueDate.value,
       };
       todos.push(todo);
       toLocalStorage(todos);
