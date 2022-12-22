@@ -76,7 +76,7 @@ function renderTodos(todos) {
         <i class="fa-solid fa-house-user"></i>${item.name}
           <div class="icons-duedate">
             <div>
-              <input class="checkbox" type="checkbox" ${checked}>
+              <input class="checkbox" type="checkbox"  data-id="${item.id}" ${checked}>
               <button class="delete-button" data-id="${item.id}"><i class="fa-solid fa-trash-can trashcan"></i></button>
             </div>
             <span>Due date ${item.dueDate}</span>
@@ -88,6 +88,11 @@ function renderTodos(todos) {
   todoItemsLi.forEach(todo => {
     const delBtn = todo.querySelector('.delete-button');
     delBtn.addEventListener('click', removeTodo);
+  });
+
+  todoItemsLi.forEach(todo => {
+    const checkbox = todo.querySelector('.checkbox');
+    checkbox.addEventListener('click', checked);
   });
 }
 
@@ -123,27 +128,18 @@ function removeTodo(e) {
   toLocalStorage(todos);
 }
 
-getLocalStorage();
-
-
-/* function checked(id) {
-  todos.forEach(function(item) {
-    if (item.id == id) {
-      item.completed = !item.completed;
-    }
-  });
+// function for checkboxes (eventlistener in renderTodos function) get ID for correct checkbox.
+// gets the index of the object in the array and checks if the boolean is false and changes to true. If true it changes to false. 
+// updates localstorage (that function also rerenders the todolist)
+function checked(e) {
+  const getCheckboxId = Number(e.currentTarget.dataset.id);
+  const getCheckboxIndex = todos.findIndex(todo => todo.id === getCheckboxId);
+  if (todos[getCheckboxIndex].completed === false) {
+    todos[getCheckboxIndex].completed = !todos[getCheckboxIndex].completed;
+  } else {
+      todos[getCheckboxIndex].completed = !todos[getCheckboxIndex].completed;
+  };
   toLocalStorage(todos);
 }
 
-todoItemsList.addEventListener('click', function(e) {
-
-  // check if target clicked is a checkbox, run function checked  with the correct ID to mark correct todo as complete TODO: gör om från anonym funktion
-  if (e.currentTarget.type === 'checkbox') { 
-    const checkCheckbox = e.currentTarget.closest('data-key');
-    const getCheckboxId = checkCheckbox.getAttribute('data-key');
-    checked(getCheckboxId);
-  }
-});
-
-getLocalStorage(); */
-
+getLocalStorage();
