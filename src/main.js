@@ -34,7 +34,7 @@ const todoInputDueDate = document.querySelector('.todo-input-date');
 
 
 const todoItemsList = document.querySelector('.todo-items');
-const todoItemsLi = document.querySelector('#item');
+let todoItemsLi = document.querySelector('.item');
 
 let todos = [];
 
@@ -61,11 +61,10 @@ function addTodo(item, dueDate) {
 } */
 
 
-// eventlistener on form, call event and addTodo with value from inputbox and dueDate as parameters
+// eventlistener on form, call addtodo function
 todoForm.addEventListener('submit', addTodo);
 
-
-// add todo function that checks if item and dueDate is not empty create object todo. Pushes it to todos array. Else throw an alert in users face.
+// addtodo function that checks if item and dueDate is not empty create object todo. Pushes it to todos array. Else throw an alert in users face.
 function addTodo(e) {
   e.preventDefault();
     if (todoInputDueDate.value !== '' && todoInput.value !== '') {
@@ -103,12 +102,17 @@ function renderTodos(todos) {
           <div class="icons-duedate">
             <div>
               <input class="checkbox" type="checkbox" ${checked}>
-              <button class="delete-button"><i class="fa-solid fa-trash-can trashcan"></i></button>
+              <button class="delete-button" data-id="${item.id}"><i class="fa-solid fa-trash-can trashcan"></i></button>
             </div>
             <span>Over Due Date</span>
           </div>
       `;
     todoItemsList.append(li); // append the li element to the ul
+  });
+  todoItemsLi = document.querySelectorAll('.item');
+  todoItemsLi.forEach(todo => {
+    const delBtn = todo.querySelector('.delete-button');
+    delBtn.addEventListener('click', removeTodo);
   });
 }
 
@@ -135,65 +139,23 @@ function getLocalStorage() {
 //------------------------------ Checkbox and Remove-button -------------------------------
 //*****************************************************************************************
 
-/* function checked(id) {
-  todos.forEach(function(item) {
-    if (item.id == id) {
-      item.completed = !item.completed;
-    }
-  });
+// removeTodo funtion that gets the ID from the delete button on the event (eventlistener in renderTodos function)
+// gets the index of the object in the array and splice 1 element. updates localstorage (that function also rerenders the todolist)
+function removeTodo(e) {
+  const getDeleteId = Number(e.currentTarget.dataset.id);
+  const getDeleteIndex = todos.findIndex(todo => todo.id === getDeleteId);
+  todos.splice(getDeleteIndex, 1);
   toLocalStorage(todos);
-}
- */
-function removeTodo(id) {
-  todos = todos.filter(function(item) {
-    return item.id != id;
-  });
-  toLocalStorage(todos);
-}
-
-
-/*   // check if target clicked is a checkbox, run function checked  with the correct ID to mark correct todo as complete TODO: gör om från anonym funktion
-  if (e.currentTarget.type === 'checkbox') { 
-    const checkCheckbox = e.currentTarget.closest('data-key');
-    const getCheckboxId = checkCheckbox.getAttribute('data-key');
-    checked(getCheckboxId);
-  }
- */
-
-  // check if target clicked is a delete button, run function removeTodo to remove correct todo
-
-console.log(todoItemsList)
-todoItemsList.addEventListener('click', removeGetId);
-
-function removeGetId(e) {
-
-console.log(e.currentTarget)
-  if (e.currentTarget.classList.contains('delete-button')) {     
-    const checkDeleteBtn = e.currentTarget.closest('data-key');
-    const getRemoveId = checkDeleteBtn.getAttribute('data-key');
-    removeTodo(getRemoveId);
-  }
 }
 
 getLocalStorage();
 
 
-
-
-
-
 /* function checked(id) {
   todos.forEach(function(item) {
     if (item.id == id) {
       item.completed = !item.completed;
     }
-  });
-  toLocalStorage(todos);
-}
-
-function removeTodo(id) {
-  todos = todos.filter(function(item) {
-    return item.id != id;
   });
   toLocalStorage(todos);
 }
@@ -205,13 +167,6 @@ todoItemsList.addEventListener('click', function(e) {
     const checkCheckbox = e.currentTarget.closest('data-key');
     const getCheckboxId = checkCheckbox.getAttribute('data-key');
     checked(getCheckboxId);
-  }
-
-  // check if target clicked is a delete button, run function removeTodo to remove correct todo
-  if (e.currentTarget.classList.contains('delete-button')) {     
-    const checkDeleteBtn = e.currentTarget.closest('data-key');
-    const getRemoveId = checkDeleteBtn.getAttribute('data-key');
-    removeTodo(getRemoveId);
   }
 });
 
