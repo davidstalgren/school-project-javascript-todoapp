@@ -27,39 +27,14 @@ headerWeek.innerHTML = 'Week ' + week;
 //--------------------------------------- Add Todo Item -----------------------------------
 //*****************************************************************************************
 
-//selectors for form and inputs
+//selectors for form and inputs 
 const todoForm = document.querySelector('.todo-form');
 const todoInput = document.querySelector('.todo-input');
 const todoInputDueDate = document.querySelector('.todo-input-date');
-
-
 const todoItemsList = document.querySelector('.todo-items');
-let todoItemsLi = document.querySelector('.item');
+let todoItemsLi = document.querySelectorAll('.item');
 
 let todos = [];
-
-/* // eventlistener on form, prevents reload and call addTodo with value from input box TODO: Gör om från anonym funktion!
-todoForm.addEventListener('submit', function(e) {
-  e.preventDefault();
-  addTodo(todoInput.value, todoInputDueDate.value);
-});
-
-// add todo function that checks if item and dueDate is not empty create object todo. Pushes it to todos array
-function addTodo(item, dueDate) {
-  if (item !== '' && dueDate !== '') {
-    const todo = {
-      id: Date.now(),
-      name: item,
-      completed: false,
-      dueDate: dueDate,
-    };
-    todos.push(todo);
-    toLocalStorage(todos);
-  } else {
-    alert('Make sure to type a Todo and also choose a due date and category!');
-  }
-} */
-
 
 // eventlistener on form, call addtodo function
 todoForm.addEventListener('submit', addTodo);
@@ -104,12 +79,12 @@ function renderTodos(todos) {
               <input class="checkbox" type="checkbox" ${checked}>
               <button class="delete-button" data-id="${item.id}"><i class="fa-solid fa-trash-can trashcan"></i></button>
             </div>
-            <span>Over Due Date</span>
+            <span>Due date ${item.dueDate}</span>
           </div>
       `;
     todoItemsList.append(li); // append the li element to the ul
   });
-  todoItemsLi = document.querySelectorAll('.item');
+  todoItemsLi = document.querySelectorAll('.item');   //eventlistener for the delete button
   todoItemsLi.forEach(todo => {
     const delBtn = todo.querySelector('.delete-button');
     delBtn.addEventListener('click', removeTodo);
