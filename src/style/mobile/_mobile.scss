@@ -69,7 +69,7 @@ ul {
         box-shadow: 2px 2px 5px red;
     }
 
-    &.completed{
+    &.checked{
         text-decoration: line-through;
         background-color: #606060;
     }
@@ -93,7 +93,7 @@ ul {
     .trashcan{
         font-size: 1.5rem;
 
-        &.completed{
+        &.checked{
             color: rgb(154 255 154);
         }
     }
