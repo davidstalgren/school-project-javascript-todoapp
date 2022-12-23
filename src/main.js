@@ -1,7 +1,7 @@
 import './style/style.scss';
 
 //*****************************************************************************************
-//------------------------- Print out todays date and week --------------------------------
+//------------------------- Print out current date and week --------------------------------
 //*****************************************************************************************
 
 const headerDate = document.querySelector('#headerDate');
@@ -94,7 +94,7 @@ function renderTodos(todos) {
     const checkbox = todo.querySelector('.checkbox');
     checkbox.addEventListener('click', checked);
   });
-}
+};
 
 //*****************************************************************************************
 //------------------------ Push and get items from local storage --------------------------
@@ -104,7 +104,7 @@ function renderTodos(todos) {
 function toLocalStorage(todos) {
   localStorage.setItem('todos', JSON.stringify(todos)); // stringify the array with key 'todos' and sends it to storage
   renderTodos(todos);
-}
+};
 
 // function to get array from local storage
 function getLocalStorage() {
@@ -113,7 +113,7 @@ function getLocalStorage() {
     todos = JSON.parse(todoList); // make it an array again and store it in the todos array.
     renderTodos(todos);
   }
-}
+};
 
 //*****************************************************************************************
 //------------------------------ Checkbox and Remove-button -------------------------------
@@ -126,12 +126,20 @@ function removeTodo(e) {
   const getDeleteIndex = todos.findIndex(todo => todo.id === getDeleteId);
   todos.splice(getDeleteIndex, 1);
   toLocalStorage(todos);
-}
+};
 
 // function for checkboxes (eventlistener in renderTodos function) get ID for correct checkbox.
 // gets the index of the object in the array and checks if the boolean is false and changes to true. If true it changes to false. 
 // updates localstorage (that function also rerenders the todolist)
 function checked(e) {
+  const grabCheckboxId = Number(e.currentTarget.dataset.id);
+  const grabCheckboxIndex = todos.findIndex(todo => todo.id === grabCheckboxId);
+  todos[grabCheckboxIndex].completed = !todos[grabCheckboxIndex].completed;
+  toLocalStorage(todos);
+};
+
+
+/* function checked(e) {
   const getCheckboxId = Number(e.currentTarget.dataset.id);
   const getCheckboxIndex = todos.findIndex(todo => todo.id === getCheckboxId);
   if (todos[getCheckboxIndex].completed === false) {
@@ -140,6 +148,6 @@ function checked(e) {
       todos[getCheckboxIndex].completed = !todos[getCheckboxIndex].completed;
   };
   toLocalStorage(todos);
-}
+}; */
 
 getLocalStorage();
