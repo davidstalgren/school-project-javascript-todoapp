@@ -57,6 +57,23 @@ function addTodo(e) {
 };
 
 //*****************************************************************************************
+//------------------- Eventlisteners for checkboxes and remove button ---------------------
+//*****************************************************************************************
+
+function elistenerChkAndTrash() {
+  todoItemsLi = document.querySelectorAll('.item');   //eventlistener for the delete button
+  todoItemsLi.forEach(todo => {
+    const delBtn = todo.querySelector('.delete-button');
+    delBtn.addEventListener('click', removeTodo);
+  });
+
+  todoItemsLi.forEach(todo => {   //eventlistener for checkboxes
+    const checkbox = todo.querySelector('.checkbox');
+    checkbox.addEventListener('click', checked);
+  });
+};
+
+//*****************************************************************************************
 //---------------------------------- Render out Todo items --------------------------------
 //*****************************************************************************************
 
@@ -84,16 +101,7 @@ function renderTodos(todos) {
       `;
     todoItemsList.append(li); // append the li element to the ul
   });
-  todoItemsLi = document.querySelectorAll('.item');   //eventlistener for the delete button
-  todoItemsLi.forEach(todo => {
-    const delBtn = todo.querySelector('.delete-button');
-    delBtn.addEventListener('click', removeTodo);
-  });
-
-  todoItemsLi.forEach(todo => {
-    const checkbox = todo.querySelector('.checkbox');
-    checkbox.addEventListener('click', checked);
-  });
+  elistenerChkAndTrash();
 };
 
 //*****************************************************************************************
@@ -122,8 +130,8 @@ function getLocalStorage() {
 // removeTodo funtion that gets the ID from the delete button on the event (eventlistener in renderTodos function)
 // gets the index of the object in the array and splice 1 element. updates localstorage (that function also rerenders the todolist)
 function removeTodo(e) {
-  const getDeleteId = Number(e.currentTarget.dataset.id);
-  const getDeleteIndex = todos.findIndex(todo => todo.id === getDeleteId);
+  const getDeleteId = e.currentTarget.dataset.id;
+  const getDeleteIndex = todos.findIndex(todo => todo.id == getDeleteId);
   todos.splice(getDeleteIndex, 1);
   toLocalStorage(todos);
 };
@@ -132,8 +140,8 @@ function removeTodo(e) {
 // gets the index of the object in the array and checks if the boolean is false and changes to true. If true it changes to false. 
 // updates localstorage (that function also rerenders the todolist)
 function checked(e) {
-  const grabCheckboxId = Number(e.currentTarget.dataset.id);
-  const grabCheckboxIndex = todos.findIndex(todo => todo.id === grabCheckboxId);
+  const grabCheckboxId = e.currentTarget.dataset.id;
+  const grabCheckboxIndex = todos.findIndex(todo => todo.id == grabCheckboxId);
   todos[grabCheckboxIndex].completed = !todos[grabCheckboxIndex].completed;
   toLocalStorage(todos);
 };
