@@ -124,6 +124,63 @@ function getLocalStorage() {
 };
 
 //*****************************************************************************************
+//------------------------------------ Sort function --------------------------------------
+//*****************************************************************************************
+
+// 3 functions to sort either by name, due date or date added(id).
+// 1 function to check what option is selected and run desired funtion based on that.
+function sortByDueDate() {
+  todos.sort((todos1, todos2) => {
+    if (todos1.dueDate < todos2.dueDate) {
+      return -1;
+    }
+    if (todos1.dueDate > todos2.dueDate) {
+      return 1;
+    }
+    return 0;
+  });
+};
+
+function sortByDate() {
+  todos.sort((todos1, todos2) => {
+    if (todos1.id < todos2.id) {
+      return -1;
+    }
+    if (todos1.id > todos2.id) {
+      return 1;
+    }
+    return 0;
+  });
+};
+
+function sortByName() {
+  todos.sort((todos1, todos2) => {
+    if (todos1.name.toLowerCase() < todos2.name.toLowerCase()) {
+      return -1;
+    }
+    if (todos1.name.toLowerCase() > todos2.name.toLowerCase()) {
+      return 1;
+    }
+    return 0;
+  });
+};
+
+function sortTodos() {
+  const sortValue = sortOptions.value;
+
+  if (sortValue === 'Name') {
+    sortByName();
+  } else if (sortValue === 'Date added') {
+    sortByDate();
+  } else if (sortValue === 'Due date') {
+    sortByDueDate();
+  } 
+  renderTodos(todos);
+};
+
+sortOptions.addEventListener('change', sortTodos);
+
+//*****************************************************************************************
 //------------------------------ Checkbox and Remove-button -------------------------------
 //*****************************************************************************************
 
@@ -145,17 +202,5 @@ function checked(e) {
   todos[grabCheckboxIndex].completed = !todos[grabCheckboxIndex].completed;
   toLocalStorage(todos);
 };
-
-
-/* function checked(e) {
-  const getCheckboxId = Number(e.currentTarget.dataset.id);
-  const getCheckboxIndex = todos.findIndex(todo => todo.id === getCheckboxId);
-  if (todos[getCheckboxIndex].completed === false) {
-    todos[getCheckboxIndex].completed = !todos[getCheckboxIndex].completed;
-  } else {
-      todos[getCheckboxIndex].completed = !todos[getCheckboxIndex].completed;
-  };
-  toLocalStorage(todos);
-}; */
 
 getLocalStorage();
