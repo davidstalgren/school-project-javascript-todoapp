@@ -18,7 +18,7 @@ function getWeek(date) {
     let days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
     let weekNumber = Math.ceil(days / 7);
     return weekNumber;
-  }
+  };
 
 headerDate.innerHTML = today;
 headerWeek.innerHTML = 'Week ' + week;
@@ -32,8 +32,9 @@ const todoForm = document.querySelector('.todo-form');
 const todoInput = document.querySelector('.todo-input');
 const todoInputDueDate = document.querySelector('.todo-input-date');
 const todoItemsList = document.querySelector('.todo-items');
+let todoInputCategory = ''
 let todoItemsLi = document.querySelectorAll('.item');
-
+console.log(todoInputCategory.value)
 let todos = [];
 
 // eventlistener on form, call addtodo function
@@ -42,17 +43,19 @@ todoForm.addEventListener('submit', addTodo);
 // addtodo function that checks if item and dueDate is not empty create object todo. Pushes it to todos array. Else throw an alert in users face.
 function addTodo(e) {
   e.preventDefault();
-    if (todoInputDueDate.value !== '' && todoInput.value !== '') {
+  todoInputCategory = document.querySelector('input[name="category"]:checked');
+    if ((todoInputDueDate.value !== '') && (todoInput.value !== '')) {
       const todo = {
         id: Date.now(),
         name: todoInput.value,
         completed: false,
         dueDate: todoInputDueDate.value,
+        category: todoInputCategory.value,
       };
       todos.push(todo);
       toLocalStorage(todos);
     } else {
-      alert('Make sure to type a Todo and also choose a due date and category!');
+      alert('Make sure to type a Todo and also choose a due date!');
     }
 };
 
@@ -80,6 +83,7 @@ function elistenerChkAndTrash() {
 // function to render out the todos
 function renderTodos(todos) {
   todoItemsList.innerHTML = '';
+  completeLast();
   todos.forEach(function(item) {
     const checked = item.completed ? 'checked' : null;  //ternary operator, fancy if else statement to check if todo is completed
     const li = document.createElement('li');
@@ -101,10 +105,8 @@ function renderTodos(todos) {
       li.classList.remove('justintime');
     };
 
-    completeLast();
-
       li.innerHTML = `
-        <i class="fa-solid fa-house-user"></i>${item.name}
+        <i class="${item.category}"></i>${item.name}
           <div class="icons-duedate">
             <div>
               <input class="checkbox" type="checkbox"  data-id="${item.id}" ${checked}>
@@ -115,7 +117,12 @@ function renderTodos(todos) {
       `;
     todoItemsList.append(li); // append the li element to the ul
   });
+
+  todoInputDueDate.value = '';
+  todoInput.value = '';
+
   elistenerChkAndTrash();
+  console.table(todos);
 };
 
 //*****************************************************************************************
@@ -198,14 +205,11 @@ function sortTodos() {
 function completeLast() {
   todos.sort((todos1, todos2) => {
     if (todos1.completed < todos2.completed) {
-      console.log('return -1');
       return -1;
     }
     if (todos1.completed > todos2.completed) {
-      console.log('return 1')
       return 1;
     }
-    console.log('return 0')
     return 0;
   });
 };

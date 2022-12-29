@@ -12,7 +12,7 @@ För G#
 För VG#
 Utöver kraven för G…
 
-/Check/ Uppgifterna som är klara ska lägga sig längst ner i listan
+/Check/ Uppgifterna som är klara ska lägga sig längst ner i listan (TODO: Fix bug)
 /Check/ Uppgifter som har passerat deadline ska markeras med någon färg/annat utseende (overdue tasks)
 /Check/ Uppgifter som har en deadline som är inom 5 dagar ska visas med någon text/färg att de förfaller snart
 Uppgifterna ska kunna kategoriseras och visa olika symboler framför olika kategorier. Det går bra att hårdkoda kategorierna. Du ska ha minst 3 kategorier.
