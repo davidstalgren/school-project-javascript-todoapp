@@ -86,9 +86,23 @@ function renderTodos(todos) {
     li.setAttribute('class', 'item');
     li.setAttribute('data-key', item.id);
 
-    if(item.completed === true) {   // if todo is completed add class checked, css will handle the rest
+    const dueDate = new Date(item.dueDate); // add dueDate in new variable to get same format
+    const soonDue = new Date(now.getFullYear(), now.getMonth(), (now.getDate() + 5));
+
+    if (dueDate < now) {   // if todo dueDate is less than now add class overdue
+      li.classList.add('overdue');
+    } else if (dueDate <= soonDue) {   // if todo dueDate is less than or equal to soonDue add class justintime
+      li.classList.add('justintime');
+    };
+
+    if(item.completed === true) {   // if todo is completed add class checked and remove eventual overdue and justintime classes
       li.classList.add('checked');
-    }
+      li.classList.remove('overdue');
+      li.classList.remove('justintime');
+    };
+
+/*     completeLast(); */
+
       li.innerHTML = `
         <i class="fa-solid fa-house-user"></i>${item.name}
           <div class="icons-duedate">
@@ -124,7 +138,7 @@ function getLocalStorage() {
 };
 
 //*****************************************************************************************
-//------------------------------------ Sort function --------------------------------------
+//----------------- Sort functions (Date, DueDate, Name and Completed) --------------------
 //*****************************************************************************************
 
 // 3 functions to sort either by name, due date or date added(id).
@@ -178,6 +192,22 @@ function sortTodos() {
   renderTodos(todos);
 };
 
+/* // Function to sort by completed status. Function call before rendering
+function completeLast() {
+  todos.sort((todos1, todos2) => {
+    if (todos1.completed < todos2.completed) {
+      console.log('return -1');
+      return -1;
+    }
+    if (todos1.completed > todos2.completed) {
+      console.log('return 1')
+      return 1;
+    }
+    console.log('return 0')
+    return 0;
+  });
+};
+ */
 sortOptions.addEventListener('change', sortTodos);
 
 //*****************************************************************************************
