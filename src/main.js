@@ -101,7 +101,7 @@ function renderTodos(todos) {
       li.classList.remove('justintime');
     };
 
-/*     completeLast(); */
+    completeLast();
 
       li.innerHTML = `
         <i class="fa-solid fa-house-user"></i>${item.name}
@@ -192,7 +192,9 @@ function sortTodos() {
   renderTodos(todos);
 };
 
-/* // Function to sort by completed status. Function call before rendering
+// Function to sort by completed status. Function call before rendering.
+// TODO: fix bug that rewrites and makes double checked when choosing to finish the top Todo.
+
 function completeLast() {
   todos.sort((todos1, todos2) => {
     if (todos1.completed < todos2.completed) {
@@ -207,7 +209,7 @@ function completeLast() {
     return 0;
   });
 };
- */
+
 sortOptions.addEventListener('change', sortTodos);
 
 //*****************************************************************************************
