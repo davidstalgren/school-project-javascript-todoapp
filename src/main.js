@@ -34,7 +34,6 @@ const todoInputDueDate = document.querySelector('.todo-input-date');
 const todoItemsList = document.querySelector('.todo-items');
 let todoInputCategory = ''
 let todoItemsLi = document.querySelectorAll('.item');
-console.log(todoInputCategory.value)
 let todos = [];
 
 // eventlistener on form, call addtodo function
@@ -57,6 +56,7 @@ function addTodo(e) {
     } else {
       alert('Make sure to type a Todo and also choose a due date!');
     }
+    console.log(todoInputCategory.value)
 };
 
 //*****************************************************************************************
@@ -106,14 +106,19 @@ function renderTodos(todos) {
     };
 
       li.innerHTML = `
-        <i class="${item.category}"></i>${item.name}
-          <div class="icons-duedate">
-            <div>
-              <input class="checkbox" type="checkbox"  data-id="${item.id}" ${checked}>
-              <button class="delete-button" data-id="${item.id}"><i class="fa-solid fa-trash-can trashcan"></i></button>
-            </div>
-            <span>Due date ${item.dueDate}</span>
+        <div class="item-category">
+          <i class="${item.category}"></i>
+        </div>
+        <div class="todo-text">
+          ${item.name}
+        </div>
+        <div class="icons-duedate">
+          <div>
+            <input class="checkbox" type="checkbox"  data-id="${item.id}" ${checked}>
+            <button class="delete-button" data-id="${item.id}"><i class="fa-solid fa-trash-can trashcan"></i></button>
           </div>
+          <span class="due-date-text">Due date ${item.dueDate}</span>
+        </div>
       `;
     todoItemsList.append(li); // append the li element to the ul
   });

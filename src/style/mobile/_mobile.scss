@@ -42,6 +42,7 @@ ul {
 .todo-wrapper{
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     gap: 10px;
     width: 90vw;
@@ -49,6 +50,7 @@ ul {
 
 .item{
     display: flex;
+    max-width: 550px;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
@@ -74,11 +76,27 @@ ul {
         background-color: #606060;
     }
 
+    .item-category{
+        display: flex;
+        flex-grow: 1;
+    }
+
+    .todo-text{
+        display: flex;
+        flex-wrap: wrap;
+        flex-grow: 5;
+        max-width: 35%;
+    }
+
+    .due-date-text{
+        max-width: 60%;
+    }
 
     .icons-duedate{
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+        flex-grow: 0;
     }
 
     .delete-button{
@@ -89,12 +107,56 @@ ul {
         background-color: transparent;
     }
 
-    .checkbox,
     .trashcan{
         font-size: 1.5rem;
-
-        &.checked{
-            color: rgb(154 255 154);
-        }
+        position: relative;
+        left: 10px;
+        bottom: 30px;
     }
 }
+
+
+/*******************************************************************************
+This below is custom checkbox styling found on https://moderncss.dev/ 
+*******************************************************************************/
+
+.checkbox{
+    font-family: system-ui, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.1;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    right: 15px;
+    background-color: rgb(200 200 200);
+    margin: 0;
+    font: inherit;
+    color: rgb(184 184 184);
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0.15em solid rgb(121 121 121);
+    border-radius: 0.1em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+  }
+
+  input[type="checkbox"]::before {
+    content: "";
+    position: relative;
+    width: 0.8rem;
+    height: 0.8rem;
+    transform: scale(0);
+    transition: 0.3s transform ease-in-out;
+    box-shadow: inset 1rem 1rem rgb(146 146 146);
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }
+  
+  input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
