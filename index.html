@@ -6,14 +6,14 @@
   <link rel="icon" type="image/ico" href="/favicon.ico" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DavvEDavvE needs TODO</title>
+  <title>TODO project for FED22D</title>
 </head>
 
 <body>
   <main>
 
     <header class="header">
-      <h1 class="header-todo">TODO</h1>
+      <h1 class="header-todo">You Need TODO</h1>
       <div class="todays-date">
         <span class="header-date" id="headerDate"></span>
         <span class="header-week" id="headerWeek"></span>
@@ -23,16 +23,28 @@
     <section>
       <div class="input-new-todo">
         <form class="todo-form">
-          <label for="todoInput">New TODO:<input type="text" class="todo-input" id="todoInput" placeholder="Add new TODO..."></label><br>
-          <label for="todoInputDate">Due date:<input type="date" class="todo-input-date" id="todoInputDate"></label>
+          <label for="todoInput">
+            <span class="input-new-todo-text">New TODO:</span><br>
+            <input type="text" class="todo-input" id="todoInput" placeholder="Add new TODO...">
+          </label>
+          <label for="todoInputDate">
+            <span class="input-due-date-text">Due date:</span><br>
+            <input type="date" class="todo-input-date" id="todoInputDate">
+          </label>
+          <div class="category-buttons">
+            <span class="input-category-text">Category:</span><br>
+            <label><input type="radio" name="category" id="category1" value="fa-solid fa-school"><span><i class="fa-solid fa-school"></i> School</span></label>
+            <label><input type="radio" name="category" id="category2" value="fa-solid fa-person-hiking"><span><i class="fa-solid fa-person-hiking"></i> Personal</span></label>
+            <label><input type="radio" name="category" id="category3" value="fa-solid fa-house-user" checked><span><i class="fa-solid fa-house-user"></i> Home</span></label><br>
+          </div>
           <input type="submit" class="add-button" id="add-button" value="Add"><br>
-          <label><input type="radio" name="category" id="category1" value="fa-solid fa-school"><span><i class="fa-solid fa-school"></i> School</span></label>
-          <label><input type="radio" name="category" id="category2" value="fa-solid fa-person-hiking"><span><i class="fa-solid fa-person-hiking"></i> Personal</span></label>
-          <label><input type="radio" name="category" id="category3" value="fa-solid fa-house-user" checked><span><i class="fa-solid fa-house-user"></i> Home</span></label>
         </form>
+      </div>
+    </section>
+    <section>
+      <div class="sortdropdown-wrapper">
         <label>
-          <span>Sort by:</span>
-          <select id="sortOptions" class="sort-dropdown">
+          <select id="sortOptions" class="sort-dropdown-custom">
             <option selected disabled>Sort TODOS by:</option>
             <option>Name</option>
             <option>Due date</option>

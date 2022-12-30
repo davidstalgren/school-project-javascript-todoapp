@@ -7,6 +7,7 @@
 *******************************************************************************/
 
 $font-regular: rgb(200 200 200);
+$font-dark: black;
 $inputbg: rgb(200 200 200);
 $inputborder: rgb(121 121 121);
 $checkbox-checkmark: rgb(146 146 146);
@@ -28,6 +29,7 @@ body {
 }
 
 .header{
+    padding: 15px;
     display: flex;
     justify-content: space-between;
 
@@ -43,19 +45,53 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    background-color: #2d2d2d;
+    background-color: $todo-bg;
     margin: 10px;
     padding: 10px;
     border-radius: 8px;
     border: 1px solid $regular-box-shadow;
     box-shadow: 2px 2px 5px $regular-box-shadow;
-
-    
-    .add-todo-input{
+ 
+    .todo-input{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: $inputbg;
+        border: 1px solid $inputborder;
+        color: $font-dark;
+        border-radius: 5px;
+        width: 100%;
     }
 
-    .add-todo-btn{
+    .todo-input-date{
+        background-color: $inputbg;
+        border: 1px solid $inputborder;
+        color: $font-dark;
+        border-radius: 5px;
+        width: 100%;
     }
+
+    .add-button{
+        margin-top: 10px;
+        width: 5rem;
+        background-color: $inputbg;
+        border: 2px solid $inputborder;
+        font-size: 1rem;
+        padding: 6px;
+        border-radius: 5px;
+        color: $font-dark;
+        cursor: pointer;
+    }
+
+    .category-buttons{
+
+    }
+}
+
+.sortdropdown-wrapper{
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
 }
 
 ul {
@@ -168,9 +204,9 @@ input[type="checkbox"] {
     transform: translateY(-0.075em);
     display: grid;
     place-content: center;
-  }
+}
 
-  input[type="checkbox"]::before {
+input[type="checkbox"]::before {
     content: "";
     position: relative;
     width: 1.0rem;
@@ -180,11 +216,11 @@ input[type="checkbox"] {
     box-shadow: inset 1rem 1rem $checkbox-checkmark;
     transform-origin: bottom left;
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-  }
+}
   
-  input[type="checkbox"]:checked::before {
+input[type="checkbox"]:checked::before {
     transform: scale(1);
-  }
+}
 
 /*****************************************************************************************
 This below is custom dropdown menu styling found on https://codepen.io/raubaca/pen/bGWmZje 
@@ -194,32 +230,32 @@ $glass: rgba(255 255 255 /20%);
 $glass-icon: rgba(255 255 255 /30%);
 $option: #320a28;
 
-.sort-dropdown {
-  appearance: none;
-  border: 0;
-  outline: 0;
-  font: inherit;
-  width: 12rem;
-  height: 2rem;
-  padding: 0 4em 0 1em;
-  background: url("../public/svg/Caret_down_font_awesome_whitevariation.svg")
+.sort-dropdown-custom{
+    appearance: none;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    width: 12rem;
+    height: 2rem;
+    padding: 0 4em 0 1em;
+    background: url("../public/svg/Caret_down_font_awesome_whitevariation.svg")
       no-repeat right 0.8em center / 1.4em,
     linear-gradient(to left, $glass-icon 3em, $glass 3em);
-  color: white;
-  border-radius: 0.25em;
-  box-shadow: 0 0 1em 0 rgba(0 0 0 /20%);
-  cursor: pointer;
+    color: white;
+    border-radius: 0.25em;
+    box-shadow: 0 0 1em 0 rgba(0 0 0 /20%);
+    cursor: pointer;
 
-  option {
-    color: inherit;
-    background-color: $option;
-  }
+    option {
+        color: inherit;
+        background-color: $option;
+    }
 
-  &:focus {
-    outline: none;
-  }
+    &:focus {
+        outline: none;
+    }
 
-  &::-ms-expand {
-    display: none;
-  }
+    &::-ms-expand {
+        display: none;
+    }
 }
