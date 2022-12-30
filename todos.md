@@ -24,8 +24,9 @@ Before I let it go#
 /Check/ Make custom Checkbox
 /Check/ Make custom dropdown for sorting options
 /Check/ Make overall styling complete
-Validate HTML/CSS
-Lighthouse
+/Check/ Validate HTML/CSS
+/Check/ Lighthouse
+Test different browsers
 Screenshots
 ReadME
 Sign OUT!
