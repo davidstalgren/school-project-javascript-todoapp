@@ -16,3 +16,11 @@ Utöver kraven för G…
 /Check/ Uppgifter som har passerat deadline ska markeras med någon färg/annat utseende (overdue tasks)
 /Check/ Uppgifter som har en deadline som är inom 5 dagar ska visas med någon text/färg att de förfaller snart
 /Check/ Uppgifterna ska kunna kategoriseras och visa olika symboler framför olika kategorier. Det går bra att hårdkoda kategorierna. Du ska ha minst 3 kategorier.
+
+-------------------------------
+
+Before I let it go#
+
+Make overall styling complete
+Make custom dropdown for sorting options
+/Check/ Make custom Checkbox
