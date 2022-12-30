@@ -11,17 +11,16 @@
 
 <body>
   <main>
+    <section class="header-and-form-wrapper">
+      <header class="header">
+        <h1 class="header-todo">You Need TODO</h1>
+        <div class="todays-date">
+          <span class="header-date" id="headerDate"></span>
+          <span class="header-week" id="headerWeek"></span>
+        </div>
+      </header>
 
-    <header class="header">
-      <h1 class="header-todo">You Need TODO</h1>
-      <div class="todays-date">
-        <span class="header-date" id="headerDate"></span>
-        <span class="header-week" id="headerWeek"></span>
-      </div>
-    </header>
-
-    <section>
-      <div class="input-new-todo">
+      <div class="form-wrapper">
         <form class="todo-form">
           <label for="todoInput">
             <span class="input-new-todo-text">New TODO:</span><br>
@@ -32,35 +31,35 @@
             <input type="date" class="todo-input-date" id="todoInputDate">
           </label>
           <div class="category-buttons">
-            <span class="input-category-text">Category:</span><br>
+            <span class="input-category-text">Pick a category:</span><br>
             <label><input type="radio" name="category" id="category1" value="fa-solid fa-school"><span><i class="fa-solid fa-school"></i> School</span></label>
             <label><input type="radio" name="category" id="category2" value="fa-solid fa-person-hiking"><span><i class="fa-solid fa-person-hiking"></i> Personal</span></label>
             <label><input type="radio" name="category" id="category3" value="fa-solid fa-house-user" checked><span><i class="fa-solid fa-house-user"></i> Home</span></label><br>
           </div>
-          <input type="submit" class="add-button" id="add-button" value="Add"><br>
+          <div>
+            <input type="submit" class="add-button" id="add-button" value="Add">
+          </div>
         </form>
       </div>
     </section>
-    <section>
-      <div class="sortdropdown-wrapper">
-        <label>
-          <select id="sortOptions" class="sort-dropdown-custom">
-            <option selected disabled>Sort TODOS by:</option>
-            <option>Name</option>
-            <option>Due date</option>
-            <option>Date added</option>
-          </select>
-        </label>
-      </div>
-    </section>
-    <section>
-      <div class="todo-wrapper">
-        <ul class="todo-items">
-        </ul>
-      </div>
-    </section>
-  </main>
 
+    <div class="sortdropdown-wrapper">
+      <label>
+        <select id="sortOptions" class="sort-dropdown-custom">
+          <option selected disabled>Sort TODOS by:</option>
+          <option>Name</option>
+          <option>Due date</option>
+          <option>Date added</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="todo-wrapper">
+      <ul class="todo-items">
+      </ul>
+    </div>
+
+  </main>
   <script type="module" src="/src/main.js"></script>
 </body>
 
