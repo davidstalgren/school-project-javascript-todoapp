@@ -26,7 +26,7 @@ Before I let it go#
 /Check/ Make overall styling complete
 /Check/ Validate HTML/CSS
 /Check/ Lighthouse
-Test different browsers
-Screenshots
+/Check/ Test different browsers
+/Check/ Screenshots
 ReadME
 Sign OUT!
