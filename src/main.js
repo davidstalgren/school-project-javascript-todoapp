@@ -10,15 +10,15 @@ const now = new Date();
 const day = now.getDate();
 const month = now.getMonth() + 1;
 const year = now.getFullYear();
-const week = getWeek(now)
-const today = day + '/' + month + ' - ' + year;
+const week = getWeek(now);
+const today = year + '-' + month + '-' + day;
 
 function getWeek(date) {
-    let startDate = new Date(date.getFullYear(), 0, 1);
-    let days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
-    let weekNumber = Math.ceil(days / 7);
-    return weekNumber;
-  };
+  let startDate = new Date(date.getFullYear(), 0, 1);
+  let days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
+  let weekNumber = Math.ceil(days / 7);
+  return weekNumber;
+};
 
 headerDate.innerHTML = today;
 headerWeek.innerHTML = 'Week ' + week;
@@ -32,7 +32,7 @@ const todoForm = document.querySelector('.todo-form');
 const todoInput = document.querySelector('.todo-input');
 const todoInputDueDate = document.querySelector('.todo-input-date');
 const todoItemsList = document.querySelector('.todo-items');
-let todoInputCategory = ''
+let todoInputCategory = undefined;
 let todoItemsLi = document.querySelectorAll('.item');
 let todos = [];
 
@@ -56,7 +56,6 @@ function addTodo(e) {
     } else {
       alert('Make sure to type a Todo and also choose a due date!');
     }
-    console.log(todoInputCategory.value)
 };
 
 //*****************************************************************************************
@@ -113,11 +112,10 @@ function renderTodos(todos) {
           ${item.name}
         </div>
         <div class="icons-duedate">
-          <div>
-            <input class="checkbox" type="checkbox"  data-id="${item.id}" ${checked}>
-            <button class="delete-button" data-id="${item.id}"><i class="fa-solid fa-trash-can trashcan"></i></button>
+          <div class="icons">
+            <input class="checkbox" type="checkbox" data-id="${item.id}" ${checked}><button class="delete-button" data-id="${item.id}"><i class="fa-solid fa-trash-can trashcan"></i></button>
           </div>
-          <span class="due-date-text">Due date ${item.dueDate}</span>
+          <span class="due-date-text">Due date<br>${item.dueDate}</span>
         </div>
       `;
     todoItemsList.append(li); // append the li element to the ul
@@ -127,7 +125,6 @@ function renderTodos(todos) {
   todoInput.value = '';
 
   elistenerChkAndTrash();
-  console.table(todos);
 };
 
 //*****************************************************************************************
@@ -204,8 +201,7 @@ function sortTodos() {
   renderTodos(todos);
 };
 
-// Function to sort by completed status. Function call before rendering.
-// TODO: fix bug that rewrites and makes double checked when choosing to finish the top Todo.
+// Function to sort by completed status. Function is called before rendering.
 
 function completeLast() {
   todos.sort((todos1, todos2) => {

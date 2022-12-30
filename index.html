@@ -30,18 +30,16 @@
           <label><input type="radio" name="category" id="category2" value="fa-solid fa-person-hiking"><span><i class="fa-solid fa-person-hiking"></i> Personal</span></label>
           <label><input type="radio" name="category" id="category3" value="fa-solid fa-house-user" checked><span><i class="fa-solid fa-house-user"></i> Home</span></label>
         </form>
+        <label>
+          <span>Sort by:</span>
+          <select id="sortOptions" class="sort-dropdown">
+            <option selected disabled>Sort TODOS by:</option>
+            <option>Name</option>
+            <option>Due date</option>
+            <option>Date added</option>
+          </select>
+        </label>
       </div>
-    </section>
-    <section>
-      <label>
-        <span>Sort by:</span>
-        <select id="sortOptions" class="sort-dropdown">
-          <option selected disabled>Sort TODOS by:</option>
-          <option>Name</option>
-          <option>Due date</option>
-          <option>Date added</option>
-        </select>
-      </label>
     </section>
     <section>
       <div class="todo-wrapper">

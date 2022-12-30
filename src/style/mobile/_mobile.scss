@@ -2,11 +2,29 @@
   outline: 1px solid #f00 !important; // Turn on to see layout and overflowing containers better
 } */
 
+/*******************************************************************************
+***************************************Variables********************************
+*******************************************************************************/
+
+$font-regular: rgb(200 200 200);
+$inputbg: rgb(200 200 200);
+$inputborder: rgb(121 121 121);
+$checkbox-checkmark: rgb(146 146 146);
+$overdue-box-shadow: red;
+$just-in-time-box-shadow: rgb(255 136 0);
+$regular-box-shadow: rgb(117 117 117);
+$todo-bg: #2d2d2d;
+$completed-todo-bg: #606060;
+
+/*******************************************************************************
+***************************************Styling**********************************
+*******************************************************************************/
+
 body {
     background-image: linear-gradient(#22333d, #000);
-    color: rgb(200 200 200);
+    color: $font-regular;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
 }
 
 .header{
@@ -22,35 +40,6 @@ body {
 
 .input-new-todo{
     display: flex;
-    justify-content: center;
-    
-    .add-todo-input{
-        width: 70%;
-    }
-
-    .add-todo-btn{
-        width: 20%;
-    }
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.todo-wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-    width: 90vw;
-}
-
-.item{
-    display: flex;
-    max-width: 550px;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
@@ -58,64 +47,101 @@ ul {
     margin: 10px;
     padding: 10px;
     border-radius: 8px;
+    border: 1px solid $regular-box-shadow;
+    box-shadow: 2px 2px 5px $regular-box-shadow;
+
+    
+    .add-todo-input{
+    }
+
+    .add-todo-btn{
+    }
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.todo-wrapper{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: $todo-bg;
+    margin: 8px;
+    padding: 8px;
+    border-radius: 8px;
     border: 1px solid gray;
     box-shadow: 2px 2px 5px rgb(117 117 117);
 
     &.justintime{
-        border: 1px solid rgb(255 136 0);
-        box-shadow: 2px 2px 5px rgb(255 136 0);
+        border: 1px solid $just-in-time-box-shadow;
+        box-shadow: 2px 2px 5px $just-in-time-box-shadow;
     }
 
     &.overdue{
-        border: 1px solid red;
-        box-shadow: 2px 2px 5px red;
+        border: 1px solid $overdue-box-shadow;
+        box-shadow: 2px 2px 5px $overdue-box-shadow;
     }
 
     &.checked{
         text-decoration: line-through;
-        background-color: #606060;
+        background-color: $completed-todo-bg;
     }
 
     .item-category{
-        display: flex;
-        flex-grow: 1;
+        font-size: 2rem;
     }
 
     .todo-text{
-        display: flex;
-        flex-wrap: wrap;
-        flex-grow: 5;
-        max-width: 35%;
-    }
-
-    .due-date-text{
-        max-width: 60%;
+        max-inline-size: 12rem;
+        word-wrap: normal;
     }
 
     .icons-duedate{
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        flex-grow: 0;
+        justify-content: center;
+    }
+
+    .due-date-text{
+        text-align: right;
+        width: 6rem;
+    }
+
+    .icons{
+        display: flex;
+        gap: 10px;
     }
 
     .delete-button{
-        height: 35px;
         width: 35px;
+        height: 35px;
+        padding: 0;
         border: none;
-        color: rgb(200 200 200);
+        font-size: 2rem;
+        color: $font-regular;
         background-color: transparent;
+        cursor: pointer;
     }
 
     .trashcan{
-        font-size: 1.5rem;
         position: relative;
-        left: 10px;
-        bottom: 30px;
-        cursor: pointer;
+        bottom: 8px;
     }
 }
-
 
 /*******************************************************************************
 This below is custom checkbox styling found on https://moderncss.dev/ 
@@ -130,17 +156,14 @@ This below is custom checkbox styling found on https://moderncss.dev/
 }
 
 input[type="checkbox"] {
-    -webkit-appearance: none;
     appearance: none;
-    position: relative;
-    right: 15px;
-    background-color: rgb(200 200 200);
+    background-color: $inputbg;
     margin: 0;
     font: inherit;
     color: rgb(184 184 184);
-    width: 1.5rem;
-    height: 1.5rem;
-    border: 0.15em solid rgb(121 121 121);
+    width: 2rem;
+    height: 2rem;
+    border: 0.15em solid $inputborder;
     border-radius: 0.1em;
     transform: translateY(-0.075em);
     display: grid;
@@ -150,11 +173,11 @@ input[type="checkbox"] {
   input[type="checkbox"]::before {
     content: "";
     position: relative;
-    width: 0.8rem;
-    height: 0.8rem;
+    width: 1.0rem;
+    height: 1.3rem;
     transform: scale(0);
     transition: 0.3s transform ease-in-out;
-    box-shadow: inset 1rem 1rem rgb(146 146 146);
+    box-shadow: inset 1rem 1rem $checkbox-checkmark;
     transform-origin: bottom left;
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
   }
@@ -167,8 +190,8 @@ input[type="checkbox"] {
 This below is custom dropdown menu styling found on https://codepen.io/raubaca/pen/bGWmZje 
 *****************************************************************************************/
 
-$glass: rgba(255, 255, 255, 20%);
-$glass-icon: rgba(255, 255, 255, 30%);
+$glass: rgba(255 255 255 /20%);
+$glass-icon: rgba(255 255 255 /30%);
 $option: #320a28;
 
 .sort-dropdown {
@@ -179,12 +202,12 @@ $option: #320a28;
   width: 12rem;
   height: 2rem;
   padding: 0 4em 0 1em;
-  background: url("https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg")
+  background: url("../public/svg/Caret_down_font_awesome_whitevariation.svg")
       no-repeat right 0.8em center / 1.4em,
     linear-gradient(to left, $glass-icon 3em, $glass 3em);
   color: white;
   border-radius: 0.25em;
-  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 20%);
+  box-shadow: 0 0 1em 0 rgba(0 0 0 /20%);
   cursor: pointer;
 
   option {
