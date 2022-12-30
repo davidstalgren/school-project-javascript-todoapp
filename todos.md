@@ -21,6 +21,11 @@ Utöver kraven för G…
 
 Before I let it go#
 
-Make overall styling complete
-Make custom dropdown for sorting options
 /Check/ Make custom Checkbox
+/Check/ Make custom dropdown for sorting options
+/Check/ Make overall styling complete
+Validate HTML/CSS
+Lighthouse
+Screenshots
+ReadME
+Sign OUT!

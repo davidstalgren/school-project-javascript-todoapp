@@ -84,7 +84,7 @@ function renderTodos(todos) {
   todoItemsList.innerHTML = '';
   completeLast();
   todos.forEach(function(item) {
-    const checked = item.completed ? 'checked' : null;  //ternary operator, fancy if else statement to check if todo is completed
+    const checked = item.completed ? 'checked' : '';  //ternary operator, fancy if else statement to check if todo is completed
     const li = document.createElement('li');
     li.setAttribute('class', 'item');
     li.setAttribute('data-key', item.id);
@@ -113,7 +113,7 @@ function renderTodos(todos) {
         </div>
         <div class="icons-duedate">
           <div class="icons">
-            <input class="checkbox" type="checkbox" data-id="${item.id}" ${checked}><button class="delete-button" data-id="${item.id}"><i class="fa-solid fa-trash-can trashcan"></i></button>
+            <input aria-label="complete checkbox" class="checkbox" type="checkbox" data-id="${item.id}" ${checked}><button aria-label="delete button" class="delete-button" data-id="${item.id}"><i class="fa-solid fa-trash-can trashcan"></i></button>
           </div>
           <span class="due-date-text">Due date<br>${item.dueDate}</span>
         </div>
