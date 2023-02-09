@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/ico" href="/school-project-javascript-todoapp/favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TODO project for FED22D</title>
+  <script type="module" crossorigin src="/school-project-javascript-todoapp/assets/index.0f66e168.js"></script>
+  <link rel="stylesheet" href="/school-project-javascript-todoapp/assets/index.bf0c5bd9.css">
+</head>
+
+<body>
+  <main>
+    <section class="header-and-form-wrapper">
+      <header class="header">
+        <h1 class="header-todo">You Need TODO</h1>
+        <div class="todays-date">
+          <span class="header-date" id="headerDate"></span>
+          <span class="header-week" id="headerWeek"></span>
+        </div>
+      </header>
+
+      <div class="form-wrapper">
+        <form class="todo-form">
+          <label for="todoInput">
+            <span class="input-new-todo-text">New TODO:</span><br>
+            <input type="text" class="todo-input" id="todoInput" placeholder="Add new TODO...">
+          </label>
+          <label for="todoInputDate">
+            <span class="input-due-date-text">Due date:</span><br>
+            <input type="date" class="todo-input-date" id="todoInputDate">
+          </label>
+          <div class="category-buttons">
+            <span class="input-category-text">Pick a category:</span><br>
+            <label><input type="radio" name="category" id="category1" value="fa-solid fa-school"><span><i class="fa-solid fa-school"></i> School</span></label>
+            <label><input type="radio" name="category" id="category2" value="fa-solid fa-person-hiking"><span><i class="fa-solid fa-person-hiking"></i> Personal</span></label>
+            <label><input type="radio" name="category" id="category3" value="fa-solid fa-house-user" checked><span><i class="fa-solid fa-house-user"></i> Home</span></label><br>
+          </div>
+          <div>
+            <input type="submit" class="add-button" id="add-button" value="Add">
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <div class="sortdropdown-wrapper">
+      <label>
+        <select id="sortOptions" class="sort-dropdown-custom">
+          <option selected disabled>Sort TODOS by:</option>
+          <option>Name</option>
+          <option>Due date</option>
+          <option>Date added</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="todo-wrapper">
+      <ul class="todo-items">
+      </ul>
+    </div>
+
+  </main>
+  
+</body>
+
+</html>
